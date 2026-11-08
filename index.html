@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Abbey Stitches Empire | Welcome</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#06132b',
+              dark: '#030a17',
+              gold: '#d4af37',
+              goldLight: '#f3e5ab'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  
+  <!-- PWA Manifest Link -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Abbey Stitches" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
+  <!-- Service Worker Registration Script -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('Service Worker Registered Successfully! Scope:', reg.scope))
+          .catch((err) => console.error('Service Worker Registration Failed:', err));
+      });
+    }
+  </script>
+
+</head>
+<body class="bg-brand-dark h-screen w-full font-sans antialiased text-white m-0 p-0 overflow-hidden">
+
+  <!-- Fullscreen Fixed Container -->
+  <div class="relative w-full h-full flex flex-col justify-between bg-gradient-to-b from-brand-navy via-brand-dark to-black">
+
+    <!-- Header Section -->
+    <header class="relative z-10 pt-6 md:pt-10 pb-2 px-6 text-center flex flex-col items-center">
+      <div class="w-20 h-20 md:w-24 md:h-24 mb-2 rounded-full border-2 border-yellow-500/40 p-1 shadow-lg shadow-yellow-500/10 bg-brand-dark">
+        <img src="abby.jpg" alt="Abbey Stitches Logo" class="w-full h-full object-cover rounded-full" />
+      </div>
+
+      <h1 class="text-2xl md:text-4xl font-bold tracking-wider font-serif text-amber-200">
+        ABBEY STITCHES
+      </h1>
+      <div class="flex items-center justify-center gap-2 mt-2 text-xs md:text-sm italic text-amber-100/70 font-serif">
+        <span>Style</span> • <span>Class</span> • <span>You</span>
+      </div>
+    </header>
+
+    <!-- Center Slideshow Area (scrn1.png, scrn2.png & scrn3.png) -->
+    <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-2 overflow-hidden">
+      <div class="relative w-full max-w-xs sm:max-w-sm h-[48vh] sm:h-[55vh] max-h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-yellow-500/20 bg-black/40">
+        
+        <!-- Slide 1 -->
+        <img 
+          id="slide-1" 
+          src="scrn1.png" 
+          alt="Abbey Stitches Showcase 1" 
+          class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 opacity-100" 
+        />
+        
+        <!-- Slide 2 -->
+        <img 
+          id="slide-2" 
+          src="scrn2.png" 
+          alt="Abbey Stitches Showcase 2" 
+          class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 opacity-0" 
+        />
+        
+        <!-- Slide 3 -->
+        <img 
+          id="slide-3" 
+          src="scrn3.png" 
+          alt="Abbey Stitches Showcase 3" 
+          class="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 opacity-0" 
+        />
+
+        <!-- Bottom Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80 pointer-events-none"></div>
+
+        <!-- Slide Indicators -->
+        <div class="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+          <span id="dot-1" class="w-2.5 h-2.5 rounded-full bg-amber-400 transition-all duration-500"></span>
+          <span id="dot-2" class="w-2.5 h-2.5 rounded-full bg-white/40 transition-all duration-500"></span>
+          <span id="dot-3" class="w-2.5 h-2.5 rounded-full bg-white/40 transition-all duration-500"></span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Action Section -->
+    <footer class="relative z-10 pb-8 md:pb-10 pt-2 px-6 text-center flex flex-col items-center gap-3">
+      <button 
+        onclick="window.location.href='home.html'" 
+        id="btn-get-started" 
+        class="w-full max-w-xs py-3.5 px-6 bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-600 hover:from-amber-500 hover:to-yellow-700 text-brand-dark font-bold text-base rounded-full shadow-lg shadow-yellow-500/20 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group cursor-pointer"
+      >
+        <span>Get Started</span>
+        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+      </button>
+
+      <p class="text-xs text-amber-100/60 font-medium tracking-wide">
+        Stitching Your Style, Perfectly
+      </p>
+    </footer>
+
+    <!-- PWA Install Banner Modal / Drawer -->
+    <div id="pwa-install-banner" class="hidden fixed bottom-4 left-4 right-4 max-w-md mx-auto z-50 bg-gradient-to-r from-brand-navy to-brand-dark border border-amber-500/30 rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-3 animate-bounce">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full border border-amber-400/50 p-0.5 bg-brand-dark shrink-0">
+          <img src="abby.jpg" alt="Logo" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <div class="text-left">
+          <h4 class="text-xs font-bold font-serif text-amber-200">Install Abbey Stitches App</h4>
+          <p class="text-[10px] text-gray-300">Fast access & offline shopping experience</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button id="pwa-install-btn" class="px-3 py-1.5 bg-amber-400 hover:bg-amber-500 text-brand-dark font-bold text-[11px] rounded-lg shadow transition">
+          Install
+        </button>
+        <button id="pwa-close-btn" class="w-7 h-7 flex items-center justify-center text-gray-400 hover:text-white text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts: 3-Slide Carousel & PWA Prompt Trigger -->
+  <script>
+    // 1. Carousel Script
+    const slides = [
+      document.getElementById('slide-1'),
+      document.getElementById('slide-2'),
+      document.getElementById('slide-3')
+    ];
+    
+    const dots = [
+      document.getElementById('dot-1'),
+      document.getElementById('dot-2'),
+      document.getElementById('dot-3')
+    ];
+
+    let activeIndex = 0;
+
+    setInterval(() => {
+      const nextIndex = (activeIndex + 1) % slides.length;
+
+      slides[activeIndex].classList.replace('opacity-100', 'opacity-0');
+      dots[activeIndex].classList.replace('bg-amber-400', 'bg-white/40');
+
+      slides[nextIndex].classList.replace('opacity-0', 'opacity-100');
+      dots[nextIndex].classList.replace('bg-white/40', 'bg-amber-400');
+
+      activeIndex = nextIndex;
+    }, 3000);
+
+    // 2. Custom PWA Installation Script
+    let deferredPrompt;
+    const pwaBanner = document.getElementById('pwa-install-banner');
+    const installBtn = document.getElementById('pwa-install-btn');
+    const closeBtn = document.getElementById('pwa-close-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent browser default mini-infobar
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show our custom branded banner
+      pwaBanner.classList.remove('hidden');
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      pwaBanner.classList.add('hidden');
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to install prompt: ${outcome}`);
+      deferredPrompt = null;
+    });
+
+    closeBtn.addEventListener('click', () => {
+      pwaBanner.classList.add('hidden');
+    });
+
+    window.addEventListener('appinstalled', () => {
+      pwaBanner.classList.add('hidden');
+      deferredPrompt = null;
+      console.log('Abbey Stitches PWA was installed successfully!');
+    });
+  </script>
+</body>
+</html>

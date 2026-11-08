@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Admin Products</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    (function () {
+      if (sessionStorage.getItem("admin_authenticated") !== "true") {
+        const pin = prompt("🔒 Restricted Admin Access\nEnter Admin Passcode:");
+        if (pin === "Abby@1") sessionStorage.setItem("admin_authenticated", "true");
+        else { alert("❌ Access Denied!"); window.location.href = "home.html"; }
+      }
+    })();
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], serif: ['"Playfair Display"', 'serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-950 pb-24 md:pb-6">
+
+  <div class="max-w-md md:max-w-6xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <!-- Top Admin Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="admin.html" class="text-gray-200 hover:text-white transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Manage Products</h1>
+      </div>
+      
+      <button onclick="document.getElementById('add-modal').classList.remove('hidden')" class="bg-amber-500 hover:bg-amber-600 text-brand-dark font-bold text-xs px-3 py-1.5 rounded-lg shadow transition flex items-center gap-1.5">
+        <i class="fa-solid fa-plus text-[10px]"></i>
+        <span>Add Product</span>
+      </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="p-4 md:p-6 flex-1 flex flex-col gap-4">
+      <div id="products-list" class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+        <!-- Live Uploaded & Sample Products Render Here -->
+      </div>
+    </main>
+
+    <!-- Admin Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-6xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="admin.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-chart-pie text-base"></i><span class="text-[10px]">Dashboard</span></a>
+      <a href="admin-products.html" class="flex flex-col items-center gap-0.5 text-amber-600 font-semibold"><i class="fa-solid fa-box-archive text-base"></i><span class="text-[10px]">Products</span></a>
+      <a href="admin-orders.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-list-check text-base"></i><span class="text-[10px]">Orders</span></a>
+      <a href="admin-customers.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-users text-base"></i><span class="text-[10px]">Customers</span></a>
+      <a href="#admin-settings" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-gear text-base"></i><span class="text-[10px]">Settings</span></a>
+    </nav>
+  </div>
+
+  <!-- Add Product Modal Form -->
+  <div id="add-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 flex flex-col gap-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+        <h3 class="text-sm font-bold font-serif text-brand-navy">Add New Outfit</h3>
+        <button onclick="document.getElementById('add-modal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-base"></i></button>
+      </div>
+
+      <form id="product-form" class="flex flex-col gap-3">
+        <div>
+          <label class="block text-[11px] font-semibold text-gray-600 mb-1">Product Title</label>
+          <input type="text" id="p-title" placeholder="e.g. Elegant Ankara Kaftan" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-2 focus:ring-brand-navy focus:outline-none" required />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold text-gray-600 mb-1">Category</label>
+          <select id="p-category" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-2 focus:ring-brand-navy focus:outline-none">
+            <option value="Ready-to-Wear">Ready-to-Wear</option>
+            <option value="Ankara">Ankara</option>
+            <option value="Gowns">Gowns</option>
+            <option value="Corporate Wear">Corporate Wear</option>
+            <option value="Tops">Tops & Blouses</option>
+            <option value="Kiddies">Kiddies</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold text-gray-600 mb-1">Price (₦)</label>
+          <input type="number" id="p-price" placeholder="e.g. 35000" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-2 focus:ring-brand-navy focus:outline-none" required />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-semibold text-gray-600 mb-1">Product Image (Upload File)</label>
+          <input type="file" id="p-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-navy file:text-white hover:file:bg-brand-dark cursor-pointer" />
+        </div>
+
+        <button type="submit" class="mt-2 py-3 bg-brand-navy hover:bg-brand-dark text-white font-bold text-xs rounded-xl shadow transition">Save & Publish to Store</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let defaultProducts = [
+      { id: 1, title: "Elegant Peplum Top & Skirt Set", category: "Corporate Wear", price: 35000, image: "scrn3.png" },
+      { id: 2, title: "Chic Office Dress", category: "Corporate Wear", price: 32000, image: "scrn1.png" },
+      { id: 3, title: "Ankara Flare Gown", category: "Ankara", price: 38000, image: "scrn2.png" }
+    ];
+
+    function loadProducts() {
+      const stored = JSON.parse(localStorage.getItem("abbey_products") || "[]");
+      const all = [...stored, ...defaultProducts];
+      const container = document.getElementById("products-list");
+      
+      container.innerHTML = all.map(p => `
+        <div class="p-3 bg-gray-50/80 border border-gray-200/80 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
+          <img src="${p.image}" alt="${p.title}" class="w-16 h-16 rounded-xl object-cover shrink-0 border border-gray-200" />
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-gray-900 truncate">${p.title}</h4>
+            <span class="text-[10px] text-gray-500 block">${p.category}</span>
+            <p class="text-xs font-extrabold text-brand-navy mt-0.5">₦${Number(p.price).toLocaleString()}</p>
+          </div>
+          <button onclick="deleteProduct(${p.id})" class="w-7 h-7 rounded-lg bg-white border border-gray-200 text-red-500 hover:bg-red-50 flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("product-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("p-title").value;
+      const category = document.getElementById("p-category").value;
+      const price = document.getElementById("p-price").value;
+      const fileInput = document.getElementById("p-file");
+
+      let imageSrc = "scrn1.png"; // Fallback default image
+
+      const saveItem = (imgData) => {
+        const stored = JSON.parse(localStorage.getItem("abbey_products") || "[]");
+        const newItem = { id: Date.now(), title, category, price, image: imgData };
+        stored.unshift(newItem);
+        localStorage.setItem("abbey_products", JSON.stringify(stored));
+        document.getElementById("add-modal").classList.add("hidden");
+        document.getElementById("product-form").reset();
+        loadProducts();
+      };
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (event) => saveItem(event.target.result);
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveItem(imageSrc);
+      }
+    });
+
+    function deleteProduct(id) {
+      let stored = JSON.parse(localStorage.getItem("abbey_products") || "[]");
+      stored = stored.filter(p => p.id !== id);
+      localStorage.setItem("abbey_products", JSON.stringify(stored));
+      loadProducts();
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>

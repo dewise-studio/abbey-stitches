@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Ankara Collection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } } } } };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-20 md:pb-6">
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden">
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="home.html" class="text-gray-200 hover:text-white transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Ankara Styles</h1>
+      </div>
+      <a href="cart.html" class="relative text-gray-200 hover:text-white transition">
+        <i class="fa-solid fa-cart-shopping text-lg"></i>
+        <span id="cart-badge" class="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </a>
+    </header>
+
+    <!-- Product Grid Container -->
+    <main class="p-4">
+      <div id="category-products-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Dynamically injected items will appear here -->
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-house text-base"></i><span class="text-[10px]">Home</span></a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-amber-600 font-semibold"><i class="fa-solid fa-bag-shopping text-base"></i><span class="text-[10px]">Shop</span></a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-scissors text-base"></i><span class="text-[10px]">Custom Order</span></a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-heart text-base"></i><span class="text-[10px]">Wishlist</span></a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-user text-base"></i><span class="text-[10px]">Account</span></a>
+    </nav>
+  </div>
+
+  <!-- Script to load Ankara category items & dynamic cart count -->
+  <script>
+    const defaultAnkara = [
+      { title: "Ankara Flare Gown", category: "Ankara", price: 38000, image: "scrn2.png" }
+    ];
+
+    function renderCategoryProducts() {
+      const stored = JSON.parse(localStorage.getItem("abbey_products") || "[]");
+      const all = [...stored, ...defaultAnkara];
+      const filtered = all.filter(p => p.category.toLowerCase() === "ankara");
+
+      const grid = document.getElementById("category-products-grid");
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full py-16 text-center text-xs text-gray-400">No items uploaded under Ankara yet. Use the Admin Dashboard to add products!</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <a href="shop-detail.html?title=${encodeURIComponent(p.title)}" class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='scrn1.png'" />
+            <button class="absolute top-2 right-2 w-7 h-7 bg-white/80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition shadow-sm">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+          </div>
+          <div class="p-2.5 flex flex-col gap-1">
+            <h4 class="text-xs font-semibold text-gray-800 truncate">${p.title}</h4>
+            <p class="text-xs font-bold text-brand-navy">₦${Number(p.price).toLocaleString()}</p>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    // Set Dynamic Cart Badge Count
+    const cart = JSON.parse(localStorage.getItem("abbey_cart") || "[]");
+    let totalCartCount = 0;
+    cart.forEach(item => totalCartCount += (item.quantity || 1));
+    document.getElementById("cart-badge").innerText = totalCartCount;
+
+    renderCategoryProducts();
+  </script>
+</body>
+</html>

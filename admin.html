@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Admin Dashboard</title>
+
+  <!-- ADMIN PASSCODE PROTECTION SCRIPT -->
+  <script>
+    (function () {
+      const ADMIN_PASSCODE = "Abby@1"; 
+
+      // Check if already authenticated during this browser session
+      if (sessionStorage.getItem("admin_authenticated") !== "true") {
+        const userPasscode = prompt("🔒 Restricted Admin Access\nPlease enter the Admin Passcode:");
+
+        if (userPasscode === ADMIN_PASSCODE) {
+          sessionStorage.setItem("admin_authenticated", "true");
+        } else {
+          alert("❌ Access Denied: Invalid Passcode!");
+          window.location.href = "home.html";
+        }
+      }
+    })();
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#06132b',
+              dark: '#030a17',
+              gold: '#d4af37',
+              goldLight: '#f3e5ab'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-950 pb-20 md:pb-6">
+
+  <!-- Main Responsive Container -->
+  <div class="max-w-md md:max-w-6xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <!-- Top Admin Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <img src="abby.jpg" alt="Logo" class="w-8 h-8 rounded-full border border-yellow-500/50 object-cover" />
+        <div>
+          <h1 class="text-sm font-bold font-serif text-amber-200 leading-none">Admin Control</h1>
+          <p class="text-[9px] uppercase tracking-[0.2em] text-yellow-500 font-semibold">ABBEY STITCHES</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button onclick="sessionStorage.removeItem('admin_authenticated'); window.location.href='home.html';" class="text-[10px] bg-red-600/80 hover:bg-red-700 text-white font-semibold px-2.5 py-1 rounded-lg transition flex items-center gap-1 shadow-sm">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Body -->
+    <main class="p-4 md:p-6 flex-1 flex flex-col gap-6">
+
+      <!-- Metrics Summary Cards Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5">
+        
+        <!-- Total Orders Card -->
+        <div class="p-4 bg-blue-50/70 border border-blue-200/80 rounded-2xl flex flex-col justify-between shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-blue-900 uppercase tracking-wide">Total Orders</span>
+            <i class="fa-solid fa-cart-shopping text-blue-600 text-sm"></i>
+          </div>
+          <p class="text-2xl font-extrabold text-blue-950 mt-3">48</p>
+        </div>
+
+        <!-- Pending Orders Card -->
+        <div class="p-4 bg-amber-50/70 border border-amber-200/80 rounded-2xl flex flex-col justify-between shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wide">Pending Orders</span>
+            <i class="fa-solid fa-clock text-amber-600 text-sm"></i>
+          </div>
+          <p class="text-2xl font-extrabold text-amber-950 mt-3">12</p>
+        </div>
+
+        <!-- Customers Card -->
+        <div class="p-4 bg-emerald-50/70 border border-emerald-200/80 rounded-2xl flex flex-col justify-between shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-emerald-900 uppercase tracking-wide">Customers</span>
+            <i class="fa-solid fa-users text-emerald-600 text-sm"></i>
+          </div>
+          <p class="text-2xl font-extrabold text-emerald-950 mt-3">36</p>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="p-4 bg-purple-50/70 border border-purple-200/80 rounded-2xl flex flex-col justify-between shadow-sm col-span-2 md:col-span-1">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-purple-900 uppercase tracking-wide">Total Revenue</span>
+            <i class="fa-solid fa-wallet text-purple-600 text-sm"></i>
+          </div>
+          <p class="text-xl md:text-2xl font-extrabold text-purple-950 mt-3">₦1,245,000</p>
+        </div>
+
+      </div>
+
+      <!-- Recent Orders Section -->
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Recent Orders</h3>
+          <a href="#admin-orders" class="text-xs text-brand-navy font-semibold hover:underline">View All &gt;</a>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+          <div class="divide-y divide-gray-100">
+            
+            <!-- Order Row 1 -->
+            <div class="p-3 flex items-center justify-between text-xs hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-gray-800 font-mono">#AS0012</span>
+                <span class="text-gray-500">₦35,000</span>
+              </div>
+              <span class="px-2.5 py-1 bg-amber-100 text-amber-800 font-bold rounded-full text-[10px]">Pending</span>
+            </div>
+
+            <!-- Order Row 2 -->
+            <div class="p-3 flex items-center justify-between text-xs hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-gray-800 font-mono">#AS0011</span>
+                <span class="text-gray-500">₦45,000</span>
+              </div>
+              <span class="px-2.5 py-1 bg-blue-100 text-blue-800 font-bold rounded-full text-[10px]">Processing</span>
+            </div>
+
+            <!-- Order Row 3 -->
+            <div class="p-3 flex items-center justify-between text-xs hover:bg-gray-50 transition">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-gray-800 font-mono">#AS0010</span>
+                <span class="text-gray-500">₦32,000</span>
+              </div>
+              <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-full text-[10px]">Delivered</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Admin Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-6xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="admin.html" class="flex flex-col items-center gap-0.5 text-amber-600 font-semibold">
+        <i class="fa-solid fa-chart-pie text-base"></i>
+        <span class="text-[10px]">Dashboard</span>
+      </a>
+      <a href="admin-products.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-box-archive text-base"></i>
+        <span class="text-[10px]">Products</span>
+      </a>
+      <a href="#admin-orders" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-list-check text-base"></i>
+        <span class="text-[10px]">Orders</span>
+      </a>
+      <a href="#admin-customers" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-users text-base"></i>
+        <span class="text-[10px]">Customers</span>
+      </a>
+      <a href="#admin-settings" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-gear text-base"></i>
+        <span class="text-[10px]">Settings</span>
+      </a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

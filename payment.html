@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], serif: ['"Playfair Display"', 'serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-20 md:pb-6">
+
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="checkout.html" class="text-gray-200 hover:text-white transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Payment</h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 md:p-6 flex-1 flex flex-col gap-6">
+
+      <!-- Step Indicator Bar -->
+      <div class="flex items-center justify-between relative px-6">
+        <div class="absolute top-1/2 left-10 right-10 h-0.5 bg-gray-200 -z-0 -translate-y-1/2"></div>
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shadow"><i class="fa-solid fa-check"></i></div>
+          <span class="text-[10px] font-medium text-gray-500">Shipping</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-brand-navy text-amber-300 font-bold text-xs flex items-center justify-center shadow">2</div>
+          <span class="text-[10px] font-bold text-gray-800">Payment</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-gray-200 text-gray-600 font-bold text-xs flex items-center justify-center">3</div>
+          <span class="text-[10px] font-medium text-gray-500">Confirm</span>
+        </div>
+      </div>
+
+      <!-- Order Summary Card -->
+      <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 flex flex-col gap-3 shadow-sm">
+        <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider border-b border-gray-200 pb-2">Order Summary</h3>
+        <div class="flex justify-between text-xs text-gray-600">
+          <span id="summary-items-text">Items</span>
+          <span id="summary-subtotal" class="font-bold text-gray-800">₦0</span>
+        </div>
+        <div class="flex justify-between text-xs text-gray-600">
+          <span>Delivery Fee</span>
+          <span id="summary-delivery" class="font-bold text-gray-800">₦2,000</span>
+        </div>
+        <div class="border-t border-gray-200 pt-2 flex justify-between text-sm font-bold text-gray-900">
+          <span>Total Amount</span>
+          <span id="summary-total" class="text-brand-navy font-extrabold text-base">₦0</span>
+        </div>
+      </div>
+
+      <!-- Bank Transfer Details Card -->
+      <div class="p-5 bg-amber-50/60 rounded-2xl border border-amber-200 flex flex-col gap-3 shadow-sm">
+        <h3 class="text-xs font-bold text-amber-900 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-building-columns text-amber-600"></i> Bank Transfer Instructions
+        </h3>
+        <div class="flex flex-col gap-2 text-xs text-gray-700 bg-white p-3.5 rounded-xl border border-amber-100">
+          <div class="flex justify-between border-b border-gray-100 pb-2">
+            <span class="text-gray-500 font-medium">Bank Name</span>
+            <span class="font-bold text-gray-900">OPAY/PAYCOM</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-100 pb-2">
+            <span class="text-gray-500 font-medium">Account Name</span>
+            <span class="font-bold text-gray-900">Abbey Stitches Empire</span>
+          </div>
+          <div class="flex justify-between pt-1">
+            <span class="text-gray-500 font-medium">Account Number</span>
+            <span class="font-mono font-bold text-brand-navy text-sm select-all bg-amber-50 px-2 py-0.5 rounded">07051716739</span>
+          </div>
+        </div>
+        <p class="text-[11px] text-amber-800/80 italic text-center">Transfer the exact total amount to the account above, then click confirm below to send proof.</p>
+      </div>
+
+      <!-- Action Button -->
+      <a href="confirm.html" onclick="completeOrder()" class="w-full py-3.5 bg-brand-navy hover:bg-brand-dark text-white font-bold text-xs rounded-xl shadow-lg text-center transition flex items-center justify-center gap-2">
+        <span>Complete & Confirm Order</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-house text-base"></i><span class="text-[10px]">Home</span></a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-bag-shopping text-base"></i><span class="text-[10px]">Shop</span></a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-scissors text-base"></i><span class="text-[10px]">Custom Order</span></a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-heart text-base"></i><span class="text-[10px]">Wishlist</span></a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-user text-base"></i><span class="text-[10px]">Account</span></a>
+    </nav>
+  </div>
+
+  <script>
+    // Read URL parameters or localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const fullname = urlParams.get('fullname') || "Customer";
+    const phone = urlParams.get('phone') || "07051716739";
+    const address = urlParams.get('address') || "Ado-Ekiti";
+    const deliveryFee = parseInt(urlParams.get('delivery') || "2000");
+
+    let cart = JSON.parse(localStorage.getItem("abbey_cart") || "[]");
+    let subtotal = 0;
+    let itemCount = 0;
+
+    cart.forEach(item => {
+      const qty = item.quantity || 1;
+      subtotal += item.price * qty;
+      itemCount += qty;
+    });
+
+    const grandTotal = subtotal + deliveryFee;
+
+    document.getElementById('summary-items-text').textContent = `Items (${itemCount})`;
+    document.getElementById('summary-subtotal').textContent = '₦' + subtotal.toLocaleString();
+    document.getElementById('summary-delivery').textContent = '₦' + deliveryFee.toLocaleString();
+    document.getElementById('summary-total').textContent = '₦' + grandTotal.toLocaleString();
+
+    // Save order payload for confirmation page
+    const orderData = {
+      orderId: '#AS-' + Math.floor(10000 + Math.random() * 90000),
+      fullname,
+      phone,
+      address,
+      subtotal,
+      deliveryFee,
+      grandTotal,
+      itemCount,
+      date: new Date().toLocaleString()
+    };
+    localStorage.setItem("abbey_latest_order", JSON.stringify(orderData));
+
+    function completeOrder() {
+      // Clear cart after completing order
+      localStorage.removeItem("abbey_cart");
+    }
+  </script>
+</body>
+</html>

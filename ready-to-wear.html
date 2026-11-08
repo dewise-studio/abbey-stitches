@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Products</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#06132b',
+              dark: '#030a17',
+              gold: '#d4af37',
+              goldLight: '#f3e5ab'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-20 md:pb-6">
+
+  <!-- Main Responsive Container -->
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="home.html" class="text-gray-200 hover:text-white transition">
+          <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Ready-to-Wear</h1>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <button class="text-gray-200 hover:text-white transition">
+          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+        </button>
+        <a href="cart.html" class="relative text-gray-200 hover:text-white transition">
+          <i class="fa-solid fa-cart-shopping text-lg"></i>
+          <span class="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="sticky top-[52px] z-30 bg-gray-50 border-b border-gray-200 px-4 py-2.5 flex items-center justify-between text-xs text-gray-600">
+      <button class="flex items-center gap-1.5 font-medium hover:text-brand-navy">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Filter</span>
+        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+      </button>
+
+      <div class="h-4 w-px bg-gray-300"></div>
+
+      <button class="flex items-center gap-1.5 font-medium hover:text-brand-navy">
+        <span>Sort by</span>
+        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+      </button>
+    </div>
+
+    <!-- Product Grid Content -->
+    <main class="p-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+        <!-- Product Item 1 -->
+        <a href="product-detail.html" class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+            <img src="scrn3.png" alt="Elegant Peplum Top & Skirt Set" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <button class="absolute top-2 right-2 w-7 h-7 bg-white/80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition shadow-sm">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+          </div>
+          <div class="p-2.5 flex flex-col gap-1">
+            <h4 class="text-xs font-semibold text-gray-800 truncate">Elegant Peplum Top & Skirt Set</h4>
+            <p class="text-xs font-bold text-brand-navy">₦35,000</p>
+            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-gray-400 font-normal ml-0.5">(12)</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product Item 2 -->
+        <a href="product-detail.html" class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+            <img src="scrn1.png" alt="Chic Office Dress" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <button class="absolute top-2 right-2 w-7 h-7 bg-white/80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition shadow-sm">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+          </div>
+          <div class="p-2.5 flex flex-col gap-1">
+            <h4 class="text-xs font-semibold text-gray-800 truncate">Chic Office Dress</h4>
+            <p class="text-xs font-bold text-brand-navy">₦32,000</p>
+            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+              <span class="text-gray-400 font-normal ml-0.5">(8)</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product Item 3 -->
+        <a href="product-detail.html" class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+            <img src="scrn2.png" alt="Ankara Flare Gown" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <button class="absolute top-2 right-2 w-7 h-7 bg-white/80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition shadow-sm">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+          </div>
+          <div class="p-2.5 flex flex-col gap-1">
+            <h4 class="text-xs font-semibold text-gray-800 truncate">Ankara Flare Gown</h4>
+            <p class="text-xs font-bold text-brand-navy">₦38,000</p>
+            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-gray-400 font-normal ml-0.5">(15)</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Product Item 4 -->
+        <a href="product-detail.html" class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group">
+          <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+            <img src="scrn1.png" alt="Classy Two-Piece Set" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <button class="absolute top-2 right-2 w-7 h-7 bg-white/80 rounded-full flex items-center justify-center text-gray-600 hover:text-red-500 transition shadow-sm">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+          </div>
+          <div class="p-2.5 flex flex-col gap-1">
+            <h4 class="text-xs font-semibold text-gray-800 truncate">Classy Two-Piece Set</h4>
+            <p class="text-xs font-bold text-brand-navy">₦30,000</p>
+            <div class="flex items-center gap-1 text-[10px] text-amber-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <span class="text-gray-400 font-normal ml-0.5">(10)</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-house text-base"></i>
+        <span class="text-[10px]">Home</span>
+      </a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-amber-600 font-semibold">
+        <i class="fa-solid fa-bag-shopping text-base"></i>
+        <span class="text-[10px]">Shop</span>
+      </a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-solid fa-scissors text-base"></i>
+        <span class="text-[10px]">Custom Order</span>
+      </a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-regular fa-heart text-base"></i>
+        <span class="text-[10px]">Wishlist</span>
+      </a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition">
+        <i class="fa-regular fa-user text-base"></i>
+        <span class="text-[10px]">Account</span>
+      </a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

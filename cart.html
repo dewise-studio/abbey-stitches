@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | My Cart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } } } } };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-24 md:pb-6">
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+    
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="shop.html" class="text-gray-200 hover:text-white transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+        <h1 class="text-base font-bold font-serif text-amber-200">My Cart</h1>
+      </div>
+      <button onclick="clearCart()" class="text-gray-200 hover:text-white transition" title="Clear Cart"><i class="fa-regular fa-trash-can text-base"></i></button>
+    </header>
+
+    <!-- Cart Items Container -->
+    <main id="cart-main-container" class="p-4 flex flex-col gap-3 flex-1">
+      <!-- Dynamically populated or empty state appears here -->
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-house text-base"></i><span class="text-[10px]">Home</span></a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-bag-shopping text-base"></i><span class="text-[10px]">Shop</span></a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-scissors text-base"></i><span class="text-[10px]">Custom Order</span></a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-heart text-base"></i><span class="text-[10px]">Wishlist</span></a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-user text-base"></i><span class="text-[10px]">Account</span></a>
+    </nav>
+  </div>
+
+  <script>
+    function getCartItems() {
+      return JSON.parse(localStorage.getItem("abbey_cart") || "[]");
+    }
+
+    function renderCart() {
+      const cart = getCartItems();
+      const container = document.getElementById("cart-main-container");
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="flex-1 flex flex-col items-center justify-center py-20 text-center gap-3">
+            <div class="w-16 h-16 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <h3 class="text-sm font-bold text-gray-800">Your cart is empty</h3>
+            <p class="text-xs text-gray-500 max-w-[220px]">You haven't added any outfits to your cart yet.</p>
+            <a href="shop.html" class="mt-2 px-5 py-2.5 bg-brand-navy text-amber-200 font-bold text-xs rounded-xl shadow">Start Shopping</a>
+          </div>
+        `;
+        return;
+      }
+
+      let subtotal = 0;
+      let itemsHtml = cart.map((item, index) => {
+        let itemTotal = item.price * (item.quantity || 1);
+        subtotal += itemTotal;
+        return `
+          <div class="p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center justify-between gap-3">
+            <img src="${item.image || 'scrn1.png'}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg shrink-0" onerror="this.src='scrn1.png'" />
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-gray-800 truncate">${item.title}</h4>
+              <p class="text-[11px] text-gray-500">${item.category || 'Outfit'}</p>
+              <p class="text-xs font-bold text-brand-navy mt-0.5">₦${Number(item.price).toLocaleString()}</p>
+            </div>
+            <div class="flex items-center border border-gray-200 rounded-lg px-2 py-1 gap-2 bg-white shrink-0">
+              <button onclick="updateQty(${index}, -1)" class="text-gray-500 text-xs font-bold px-1">-</button>
+              <span class="text-xs font-bold">${item.quantity || 1}</span>
+              <button onclick="updateQty(${index}, 1)" class="text-gray-500 text-xs font-bold px-1">+</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      let deliveryFee = 2000;
+      let grandTotal = subtotal + deliveryFee;
+
+      container.innerHTML = `
+        <div class="flex flex-col gap-3 flex-1">
+          ${itemsHtml}
+          
+          <!-- Totals Panel -->
+          <div class="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-100 flex flex-col gap-2">
+            <div class="flex justify-between text-xs text-gray-600">
+              <span>Subtotal</span>
+              <span class="font-bold text-gray-800">₦${subtotal.toLocaleString()}</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-600">
+              <span>Standard Delivery</span>
+              <span class="font-bold text-gray-800">₦${deliveryFee.toLocaleString()}</span>
+            </div>
+            <div class="border-t border-gray-200 pt-2 flex justify-between text-sm font-bold text-gray-900">
+              <span>Estimated Total</span>
+              <span class="text-brand-navy font-extrabold">₦${grandTotal.toLocaleString()}</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col gap-2 mt-2">
+            <a href="checkout.html" class="w-full py-3.5 bg-brand-navy hover:bg-brand-dark text-white font-bold text-xs rounded-xl shadow text-center transition">Proceed to Checkout</a>
+            <a href="shop.html" class="w-full py-3 bg-white border border-gray-300 text-gray-700 font-bold text-xs rounded-xl text-center transition">Continue Shopping</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateQty(index, change) {
+      let cart = getCartItems();
+      cart[index].quantity = (cart[index].quantity || 1) + change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      localStorage.setItem("abbey_cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      if (confirm("Are you sure you want to clear your cart?")) {
+        localStorage.removeItem("abbey_cart");
+        renderCart();
+      }
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

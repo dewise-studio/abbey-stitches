@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Checkout</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#06132b',
+              dark: '#030a17',
+              gold: '#d4af37',
+              goldLight: '#f3e5ab'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-20 md:pb-6">
+
+  <!-- Main Responsive Container -->
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="cart.html" class="text-gray-200 hover:text-white transition">
+          <i class="fa-solid fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Checkout</h1>
+      </div>
+    </header>
+
+    <!-- Main Checkout Form Area -->
+    <main class="p-4 md:p-6 flex-1 flex flex-col gap-6">
+
+      <!-- Step Indicator Bar -->
+      <div class="flex items-center justify-between relative px-6">
+        <div class="absolute top-1/2 left-10 right-10 h-0.5 bg-gray-200 -z-0 -translate-y-1/2"></div>
+        
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-brand-navy text-amber-300 font-bold text-xs flex items-center justify-center shadow">1</div>
+          <span class="text-[10px] font-bold text-gray-800">Shipping</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-gray-200 text-gray-600 font-bold text-xs flex items-center justify-center">2</div>
+          <span class="text-[10px] font-medium text-gray-500">Payment</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 z-10">
+          <div class="w-7 h-7 rounded-full bg-gray-200 text-gray-600 font-bold text-xs flex items-center justify-center">3</div>
+          <span class="text-[10px] font-medium text-gray-500">Confirm</span>
+        </div>
+      </div>
+
+      <form id="checkout-form" action="payment.html" method="GET" class="flex flex-col gap-5">
+        
+        <!-- Delivery Information -->
+        <div class="flex flex-col gap-3">
+          <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Delivery Information</h3>
+          
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-600 mb-1">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="e.g. Mrs. Folashade Adewuyi" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-navy" required />
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-600 mb-1">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. 07051716739" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-navy" required />
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-gray-600 mb-1">Delivery Address</label>
+            <div class="relative">
+              <input type="text" id="address" name="address" placeholder="e.g. 30, De-Morgan Street, Omisanjana, Ado-Ekiti" class="w-full pl-3 pr-8 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-navy" required />
+              <i class="fa-solid fa-location-dot absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Method -->
+        <div class="flex flex-col gap-2.5">
+          <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Delivery Method</h3>
+          
+          <label class="flex items-center justify-between p-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="delivery" value="2000" checked class="delivery-option text-brand-navy focus:ring-brand-navy" />
+              <div>
+                <p class="text-xs font-bold text-gray-800">Standard Delivery (3-5 days)</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-brand-navy">₦2,000</span>
+          </label>
+
+          <label class="flex items-center justify-between p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer transition">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="delivery" value="4000" class="delivery-option text-brand-navy focus:ring-brand-navy" />
+              <div>
+                <p class="text-xs font-bold text-gray-800">Express Delivery (1-2 days)</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold text-brand-navy">₦4,000</span>
+          </label>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="flex flex-col gap-2.5">
+          <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Payment Method</h3>
+          
+          <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer">
+            <input type="radio" name="payment_type" value="Bank Transfer" checked class="text-brand-navy focus:ring-brand-navy" />
+            <span class="text-xs font-bold text-gray-800">Bank Transfer</span>
+          </label>
+
+          <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer transition">
+            <input type="radio" name="payment_type" value="Cash on Delivery" class="text-brand-navy focus:ring-brand-navy" />
+            <span class="text-xs font-bold text-gray-800">Cash on Delivery</span>
+          </label>
+        </div>
+
+        <!-- Dynamic Order Summary Preview -->
+        <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-200/60 flex flex-col gap-2">
+          <div class="flex justify-between text-xs text-gray-600">
+            <span id="items-count-label">Subtotal (0 items)</span>
+            <span id="subtotal-display" class="font-bold text-gray-800">₦0</span>
+          </div>
+          <div class="flex justify-between text-xs text-gray-600">
+            <span>Selected Shipping</span>
+            <span id="shipping-display" class="font-bold text-gray-800">₦2,000</span>
+          </div>
+          <div class="border-t border-amber-200/80 pt-2 flex justify-between text-sm font-bold text-gray-900">
+            <span>Calculated Total</span>
+            <span id="total-display" class="text-brand-navy font-extrabold">₦2,000</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full mt-2 py-3.5 bg-brand-navy hover:bg-brand-dark text-white font-bold text-xs rounded-xl shadow-md transition">
+          Continue to Payment
+        </button>
+
+      </form>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-house text-base"></i><span class="text-[10px]">Home</span></a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-bag-shopping text-base"></i><span class="text-[10px]">Shop</span></a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-scissors text-base"></i><span class="text-[10px]">Custom Order</span></a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-heart text-base"></i><span class="text-[10px]">Wishlist</span></a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-user text-base"></i><span class="text-[10px]">Account</span></a>
+    </nav>
+
+  </div>
+
+  <script>
+    let subtotal = 0;
+    const cart = JSON.parse(localStorage.getItem("abbey_cart") || "[]");
+    
+    // Calculate actual subtotal & total item count from cart
+    let itemCount = 0;
+    cart.forEach(item => {
+      const qty = item.quantity || 1;
+      subtotal += item.price * qty;
+      itemCount += qty;
+    });
+
+    const itemsCountLabel = document.getElementById('items-count-label');
+    const subtotalDisplay = document.getElementById('subtotal-display');
+    const shippingDisplay = document.getElementById('shipping-display');
+    const totalDisplay = document.getElementById('total-display');
+    const deliveryOptions = document.querySelectorAll('.delivery-option');
+
+    itemsCountLabel.textContent = `Subtotal (${itemCount} item${itemCount === 1 ? '' : 's'})`;
+    subtotalDisplay.textContent = '₦' + subtotal.toLocaleString();
+
+    function updateTotals() {
+      const selectedOption = document.querySelector('.delivery-option:checked');
+      const fee = parseInt(selectedOption ? selectedOption.value : 2000);
+      const grandTotal = subtotal + fee;
+      shippingDisplay.textContent = '₦' + fee.toLocaleString();
+      totalDisplay.textContent = '₦' + grandTotal.toLocaleString();
+
+      // Store checkout totals temporarily for payment.html and confirm.html
+      localStorage.setItem("abbey_checkout_total", grandTotal);
+    }
+
+    deliveryOptions.forEach(option => {
+      option.addEventListener('change', updateTotals);
+    });
+
+    updateTotals();
+  </script>
+</body>
+</html>

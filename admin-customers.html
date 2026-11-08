@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Customers Directory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    (function () {
+      if (sessionStorage.getItem("admin_authenticated") !== "true") {
+        const pin = prompt("🔒 Restricted Admin Access\nEnter Admin Passcode:");
+        if (pin === "Abby@1") sessionStorage.setItem("admin_authenticated", "true");
+        else { alert("❌ Access Denied!"); window.location.href = "home.html"; }
+      }
+    })();
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], serif: ['"Playfair Display"', 'serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-950 pb-24 md:pb-6">
+
+  <div class="max-w-md md:max-w-6xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <a href="admin.html" class="text-gray-200 hover:text-white transition"><i class="fa-solid fa-arrow-left text-lg"></i></a>
+        <h1 class="text-base font-bold font-serif text-amber-200">Customer Directory</h1>
+      </div>
+      <span id="customer-count-badge" class="text-xs text-emerald-400 font-bold">Loading...</span>
+    </header>
+
+    <main id="customers-container" class="p-4 md:p-6 flex-1 flex flex-col gap-3">
+      <!-- Dynamically injected customers will appear here -->
+    </main>
+
+    <!-- Admin Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-6xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="admin.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-chart-pie text-base"></i><span class="text-[10px]">Dashboard</span></a>
+      <a href="admin-products.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-box-archive text-base"></i><span class="text-[10px]">Products</span></a>
+      <a href="admin-orders.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-list-check text-base"></i><span class="text-[10px]">Orders</span></a>
+      <a href="admin-customers.html" class="flex flex-col items-center gap-0.5 text-amber-600 font-semibold"><i class="fa-solid fa-users text-base"></i><span class="text-[10px]">Customers</span></a>
+      <a href="admin.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-gear text-base"></i><span class="text-[10px]">Settings</span></a>
+    </nav>
+  </div>
+
+  <script>
+    const defaultCustomers = [
+      { name: "John Doe", phone: "08012345678", address: "Ado-Ekiti", ordersCount: "3 Orders Completed" },
+      { name: "Mrs. Akinware Olayinka", phone: "09153839111", address: "Akure", ordersCount: "5 Orders Completed" }
+    ];
+
+    function renderCustomers() {
+      const container = document.getElementById('customers-container');
+      
+      // Pull recent orders or custom submissions from localStorage to extract real customer data
+      const latestOrder = JSON.parse(localStorage.getItem("abbey_latest_order") || "null");
+      const customOrders = JSON.parse(localStorage.getItem("abbey_custom_orders") || "[]");
+
+      let dynamicList = [...defaultCustomers];
+
+      if (latestOrder && latestOrder.fullname) {
+        dynamicList.unshift({
+          name: latestOrder.fullname,
+          phone: latestOrder.phone || "07051716739",
+          address: latestOrder.address || "Ado-Ekiti",
+          ordersCount: "1 Active Order (Pending)"
+        });
+      }
+
+      customOrders.forEach(co => {
+        dynamicList.unshift({
+          name: co.customerName,
+          phone: "07051716739",
+          address: "Custom Order Request",
+          ordersCount: `${co.outfitType} Specification`
+        });
+      });
+
+      document.getElementById('customer-count-badge').textContent = `${dynamicList.length} Registered`;
+
+      container.innerHTML = dynamicList.map((c, idx) => {
+        const initials = c.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        const colors = ['bg-brand-navy text-amber-300', 'bg-amber-500 text-brand-dark', 'bg-purple-700 text-white', 'bg-emerald-700 text-white'];
+        const badgeColor = colors[idx % colors.length];
+        const cleanPhone = c.phone.replace(/\D/g,'');
+
+        return `
+          <div class="p-3.5 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-between gap-3 shadow-sm">
+            <div class="w-10 h-10 rounded-full ${badgeColor} font-bold flex items-center justify-center font-serif shrink-0">
+              ${initials}
+            </div>
+            <div class="flex-1 min-w-0 text-xs">
+              <h4 class="font-bold text-gray-900 truncate">${c.name}</h4>
+              <p class="text-[11px] text-gray-500">${c.phone} • ${c.address}</p>
+              <span class="text-[10px] text-emerald-700 font-semibold">${c.ordersCount}</span>
+            </div>
+            <a href="https://wa.me/234${cleanPhone.startsWith('0') ? cleanPhone.slice(1) : cleanPhone}" target="_blank" class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs shadow"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        `;
+      }).join("");
+    }
+
+    renderCustomers();
+  </script>
+</body>
+</html>

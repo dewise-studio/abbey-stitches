@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abbey Stitches Empire | Order Confirmed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { navy: '#06132b', dark: '#030a17', gold: '#d4af37' } },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'], serif: ['"Playfair Display"', 'serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-900 pb-20 md:pb-6">
+
+  <div class="max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden flex flex-col justify-between">
+
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-3">
+        <h1 class="text-base font-bold font-serif text-amber-200">Order Confirmed</h1>
+      </div>
+      <span class="text-xs bg-emerald-600/90 text-white font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-check"></i> SUCCESS</span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 md:p-6 flex-1 flex flex-col gap-5 items-center">
+
+      <!-- Success Check Icon -->
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shadow-inner mt-2">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <div class="text-center">
+        <h2 class="text-lg font-bold font-serif text-gray-900">Thank You For Your Order!</h2>
+        <p class="text-xs text-gray-500 mt-1 max-w-xs">Your order has been received. Please send your transfer payment screenshot on WhatsApp to verify and process.</p>
+      </div>
+
+      <!-- Receipt Card -->
+      <div class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-2.5 text-xs">
+          <div>
+            <span class="text-[10px] text-gray-500 block">ORDER ID</span>
+            <span id="receipt-order-id" class="font-bold text-gray-900 font-mono text-sm">#AS-50804</span>
+          </div>
+          <span class="px-2.5 py-1 bg-amber-100 text-amber-800 font-bold rounded-full text-[10px]">Pending Verification</span>
+        </div>
+
+        <div class="flex flex-col gap-1.5 text-xs text-gray-700">
+          <p><span class="font-semibold text-gray-500">Customer Name:</span> <span id="receipt-name">John Doe</span></p>
+          <p><span class="font-semibold text-gray-500">Store Email:</span> abbeystitchesng01@gmail.com</p>
+          <p><span class="font-semibold text-gray-500">Contact Line:</span> 07051716739</p>
+        </div>
+
+        <div class="border-t border-gray-200 pt-2.5 flex flex-col gap-1.5 text-xs text-gray-700">
+          <div class="flex justify-between">
+            <span class="text-gray-500">Subtotal:</span>
+            <span id="receipt-subtotal" class="font-bold">₦105,000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-500">Delivery Fee:</span>
+            <span id="receipt-delivery" class="font-bold">₦2,000</span>
+          </div>
+          <div class="border-t border-dashed border-gray-200 pt-2 flex justify-between text-sm font-extrabold text-gray-900">
+            <span>Total Paid / Payable:</span>
+            <span id="receipt-total" class="text-brand-navy">₦107,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Screenshot Action Button -->
+      <button onclick="sendWhatsAppProof()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp text-base"></i>
+        <span>Send Payment Proof & Screenshot on WhatsApp</span>
+      </button>
+
+      <a href="home.html" class="w-full py-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-bold text-xs rounded-xl text-center transition shadow-sm">
+        Back to Home Store
+      </a>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md md:max-w-5xl mx-auto bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around z-40 shadow-lg">
+      <a href="home.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-house text-base"></i><span class="text-[10px]">Home</span></a>
+      <a href="shop.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-bag-shopping text-base"></i><span class="text-[10px]">Shop</span></a>
+      <a href="custom-order.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-solid fa-scissors text-base"></i><span class="text-[10px]">Custom Order</span></a>
+      <a href="wishlist.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-heart text-base"></i><span class="text-[10px]">Wishlist</span></a>
+      <a href="account.html" class="flex flex-col items-center gap-0.5 text-gray-500 hover:text-brand-navy transition"><i class="fa-regular fa-user text-base"></i><span class="text-[10px]">Account</span></a>
+    </nav>
+  </div>
+
+  <script>
+    const order = JSON.parse(localStorage.getItem("abbey_latest_order") || "{}");
+
+    if (order.orderId) {
+      document.getElementById('receipt-order-id').textContent = order.orderId;
+      document.getElementById('receipt-name').textContent = order.fullname;
+      document.getElementById('receipt-subtotal').textContent = '₦' + (order.subtotal || 0).toLocaleString();
+      document.getElementById('receipt-delivery').textContent = '₦' + (order.deliveryFee || 0).toLocaleString();
+      document.getElementById('receipt-total').textContent = '₦' + (order.grandTotal || 0).toLocaleString();
+    }
+
+    function sendWhatsAppProof() {
+      const orderId = order.orderId || "#AS-50804";
+      const name = order.fullname || "Customer";
+      const total = order.grandTotal ? '₦' + order.grandTotal.toLocaleString() : '₦107,000';
+      
+      const message = `Hello Abbey Stitches Empire! 👋\nI have made a bank transfer for my order.\n\n*Order ID:* ${orderId}\n*Customer Name:* ${name}\n*Total Amount:* ${total}\n\n[Attached is my payment screenshot for verification]`;
+      
+      const whatsappUrl = `https://wa.me/2347051716739?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
+</body>
+</html>
